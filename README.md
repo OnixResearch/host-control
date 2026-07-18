@@ -26,4 +26,6 @@ cargo clippy --workspace --all-targets -- -D warnings
 cargo check -p host-control-core --target wasm32-unknown-unknown
 ```
 
+Optional `serde` and `preserves` features expose structural codecs that re-enter core validation; they do not own I/O or transport.
+
 Passing tests establish only deterministic DTO and selected Animus/Tile mapping conformance. They do not prove daemon correctness, transport confidentiality/authentication, process or PTY preservation, terminal-output truth, policy authorization, arbitrary host compatibility, or whole-product readiness.

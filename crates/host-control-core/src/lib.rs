@@ -13,6 +13,8 @@
 extern crate alloc;
 
 mod hostcontrol;
+#[cfg(feature = "preserves")]
+pub mod preserves_wire;
 pub mod profiles;
 /// Shared bounded field validation and contract diagnostics.
 pub mod validation;
