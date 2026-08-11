@@ -57,6 +57,17 @@ The caller retains these functions:
 
 The Celld pressure-shedding mechanism is a bounded design reference only. Host Control does not claim parity or implementation equivalence.
 
+## Read-only inspection snapshots
+
+<!-- r[impl host_control.inspection.boundary] -->
+<!-- r[impl host_control.inspection.model] -->
+
+`host-control-core::inspection` validates bounded, snapshot-first inspection pages. Each page binds a source identity, source generation, snapshot revision, policy identity, redaction profile, and exact limits. Section continuations must match all these facts.
+
+Items contain typed statuses, safe summaries, bounded counts, and explicit subject relations. The core rejects stale cursors, duplicate identities, dangling or ambiguous relations, unsafe payload classes, and mutation intents. Frozen Animus, Lattice, Molten, and Tile fixtures check product-owned projection shapes without runtime dependencies.
+
+The inspection result proves only structural conformance over supplied facts. It does not prove source truth, transport delivery, persistence, authorization, effect success, or product readiness. Products retain domain meaning and all mutation authority.
+
 ## Checks
 
 Run all commands from the repository root:
@@ -80,3 +91,11 @@ Passing tests prove deterministic DTO behavior and selected Animus and Tile mapp
 - policy authorization
 - arbitrary host compatibility
 - whole-product readiness
+
+## References
+
+- [Rivet repository at `69fcebff12956265fbffc573dc01ab14d3fd470e`](https://github.com/rivet-dev/rivet/tree/69fcebff12956265fbffc573dc01ab14d3fd470e) — reviewed as a bounded Inspector UX reference under Apache-2.0.
+- [Rivet Inspector protocol at the pinned revision](https://github.com/rivet-dev/rivet/blob/69fcebff12956265fbffc573dc01ab14d3fd470e/docs-internal/engine/inspector-protocol.md) — reference for snapshot reads and explicit version handling.
+- [Rivet Inspector launch note at the pinned revision](https://github.com/rivet-dev/rivet/blob/69fcebff12956265fbffc573dc01ab14d3fd470e/website/src/content/posts/2025-1-12-rivet-inspector/page.mdx) — reference for grouped state, logs, configuration, and connection views.
+
+Host Control adopts only bounded, read-only grouping and snapshot concepts. It excludes Rivet transport, actor schemas, storage, rendering, authentication, REPL, and mutation behavior.

@@ -16,6 +16,8 @@
 extern crate alloc;
 
 mod hostcontrol;
+/// Read-only bounded inspection snapshots and consumer projections.
+pub mod inspection;
 #[cfg(feature = "preserves")]
 pub mod preserves_wire;
 pub mod profiles;

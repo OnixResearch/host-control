@@ -2,6 +2,7 @@
 //!
 // r[impl host_control.core.serialization]
 
+use crate::inspection::{InspectionError, InspectionSnapshot};
 use crate::{HostControlError, HostSelector, HostSelectorDraft};
 use alloc::string::String;
 
@@ -37,9 +38,62 @@ impl SelectorWire {
     }
 }
 
+/// Revalidate a structurally decoded inspection snapshot through the pure core.
+///
+/// # Errors
+///
+/// Returns exact inspection diagnostics for malformed decoded values.
+// r[impl host_control.inspection.codecs]
+pub fn validate_inspection_snapshot(
+    decoded: InspectionSnapshot,
+) -> Result<InspectionSnapshot, InspectionError> {
+    decoded.validate()
+}
+
 #[cfg(test)]
 mod tests {
+    use alloc::vec;
+    use alloc::vec::Vec;
+
+    use crate::inspection::{
+        InspectionFeature, InspectionFreshness, InspectionLimits, InspectionRedaction,
+        InspectionRedactionStatus, InspectionSource, InspectionSourceStatus,
+    };
+
     use super::*;
+
+    const SOURCE_GENERATION: u64 = 2;
+    const SNAPSHOT_REVISION: u64 = 3;
+    const PAGE_LIMIT: usize = 1;
+    const SUMMARY_BYTE_LIMIT: usize = 128;
+
+    fn inspection_snapshot() -> InspectionSnapshot {
+        InspectionSnapshot {
+            source: InspectionSource {
+                source_id: "source:codec".into(),
+                generation: SOURCE_GENERATION,
+                status: InspectionSourceStatus::Ready,
+                features: vec![InspectionFeature::Snapshot],
+            },
+            freshness: InspectionFreshness {
+                source_generation: SOURCE_GENERATION,
+                snapshot_revision: SNAPSHOT_REVISION,
+            },
+            policy_id: "policy:codec".into(),
+            redaction: InspectionRedaction {
+                profile_id: "redaction:codec".into(),
+                status: InspectionRedactionStatus::Clean,
+            },
+            limits: InspectionLimits {
+                max_sections: PAGE_LIMIT,
+                max_items_per_section: PAGE_LIMIT,
+                max_relations_per_item: PAGE_LIMIT,
+                max_summary_bytes: SUMMARY_BYTE_LIMIT,
+            },
+            sections: Vec::new(),
+        }
+    }
+
     #[test]
     fn decoded_selector_revalidates() {
         let value = SelectorWire {
@@ -61,5 +115,21 @@ mod tests {
             revision: 1,
         };
         assert!(value.validate().is_err());
+    }
+
+    // r[verify host_control.inspection.codecs]
+    #[test]
+    fn decoded_inspection_snapshot_reenters_core_validation() {
+        let valid = inspection_snapshot();
+        let mut invalid = inspection_snapshot();
+        invalid.source.generation = 0;
+
+        assert!(validate_inspection_snapshot(valid).is_ok());
+        assert_eq!(
+            validate_inspection_snapshot(invalid),
+            Err(InspectionError::ZeroFence {
+                field: "inspection_source_generation"
+            })
+        );
     }
 }
