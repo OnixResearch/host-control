@@ -1,6 +1,6 @@
     #[test]
     fn bounded_reads_truncate_and_hash_output() {
-        // r[verify agent_harness_runtime.host_control.bounded_reads.truncated]
+        // r[verify host_control.core.conformance]
         let view = HostOutputView::new(HostOutputReadDraft {
             source: SOURCE_RECENT,
             body: OUTPUT_BODY,
@@ -20,7 +20,7 @@
 
     #[test]
     fn bounded_reads_reject_unbounded_or_unsafe_inputs() {
-        // r[verify agent_harness_runtime.host_control.bounded_reads.truncated]
+        // r[verify host_control.core.conformance]
         let unbounded = HostOutputView::new(HostOutputReadDraft {
             visible_line_budget: NO_TIMEOUT_TICKS,
             ..output_draft()
@@ -53,7 +53,7 @@
 
     #[test]
     fn layout_apply_rejects_live_process_claims() {
-        // r[verify agent_harness_runtime.host_control.layout_contract.apply]
+        // r[verify host_control.core.features]
         let selector = pane_selector(LIVE_REVISION, SelectorLifetime::Live, HOST_ID);
         let pane = LayoutNode::pane_with(LayoutPaneDraft {
             node_id: PANE_ID,

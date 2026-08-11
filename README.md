@@ -36,6 +36,27 @@ These functions remain outside this repository:
 - native workspace state
 - credentials, policy, and authorization
 
+## Resource-watermark policy
+
+<!-- r[impl host_control.shedding.policy] -->
+<!-- r[impl host_control.shedding.boundary] -->
+
+`host-control-core::shedding` computes a deterministic pressure decision from an explicit resident count, watermarks, and reacquisition gate.
+
+The gate closes after the count exceeds the high watermark. It remains closed until the count reaches the low watermark.
+
+The core can reject active items and items with live external sessions as shedding candidates. It does not select or evict an item.
+
+The caller retains these functions:
+
+- resource observation
+- scheduling and candidate selection
+- durable parking and eviction
+- release and reacquisition
+- proof that resource pressure decreased
+
+The Celld pressure-shedding mechanism is a bounded design reference only. Host Control does not claim parity or implementation equivalence.
+
 ## Checks
 
 Run all commands from the repository root:

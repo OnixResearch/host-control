@@ -1,5 +1,5 @@
 /// Borrowed topology-resource summary before validation.
-// r[impl agent_harness_runtime.host_control.topology_dtos]
+// r[impl host_control.core.selectors]
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub struct HostTopologyResourceDraft<'a> {
     /// Resource selector.

@@ -16,6 +16,7 @@ include!("event/mod.rs");
 include!("transport.rs");
 
 #[cfg(test)]
+// r[verify host_control.core.conformance]
 mod tests {
     use super::*;
     use alloc::vec;

@@ -90,7 +90,7 @@ pub struct LayoutPaneDraft<'a> {
 }
 
 /// Declarative host layout node.
-// r[impl agent_harness_runtime.host_control.layout_contract]
+// r[impl host_control.core.features]
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub enum LayoutNode {
     /// Pane leaf node.

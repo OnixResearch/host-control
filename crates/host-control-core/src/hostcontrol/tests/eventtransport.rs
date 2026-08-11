@@ -1,6 +1,6 @@
     #[test]
     fn waits_share_event_semantics_and_timeout() {
-        // r[verify agent_harness_runtime.host_control.events_waits.timeout]
+        // r[verify host_control.core.conformance]
         let selector = agent_selector();
         let request = HostWaitRequest::new(
             CORRELATION_ID,
@@ -74,9 +74,8 @@
 
     #[test]
     fn transport_envelope_preserves_unknown_features_without_ipc() {
-        // r[verify agent_harness_runtime.host_control.transport_neutral.no_ipc_dependency]
-        // r[verify agent_harness_runtime.host_control.verification]
-        // r[verify agent_harness_runtime.host_control.verification.closeout]
+        // r[verify host_control.core.purity]
+        // r[verify host_control.core.conformance]
         let selector = pane_selector(LIVE_REVISION, SelectorLifetime::Live, HOST_ID);
         let snapshot = snapshot(core::slice::from_ref(&selector), &[OP_FOCUS], &[]);
         let command = TopologyCommand::validate(

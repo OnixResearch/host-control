@@ -1,6 +1,6 @@
     #[test]
     fn topology_command_validates_supported_selector() {
-        // r[verify agent_harness_runtime.host_control.topology_dtos.validation]
+        // r[verify host_control.core.conformance]
         let selector = pane_selector(LIVE_REVISION, SelectorLifetime::Live, HOST_ID);
         let snapshot = snapshot(
             core::slice::from_ref(&selector),
@@ -30,7 +30,7 @@
 
     #[test]
     fn topology_resource_summarizes_context_focus_and_status() {
-        // r[verify agent_harness_runtime.host_control.topology_dtos]
+        // r[verify host_control.core.selectors]
         let selector = pane_selector(LIVE_REVISION, SelectorLifetime::Live, HOST_ID);
         let resource = HostTopologyResource::validate(HostTopologyResourceDraft {
             selector: &selector,
@@ -67,7 +67,7 @@
 
     #[test]
     fn topology_command_rejects_invalid_selectors_and_labels() {
-        // r[verify agent_harness_runtime.host_control.topology_dtos.validation]
+        // r[verify host_control.core.conformance]
         let selector = pane_selector(LIVE_REVISION, SelectorLifetime::Live, HOST_ID);
         let stale = pane_selector(STALE_REVISION, SelectorLifetime::Live, HOST_ID);
         let cross_host = pane_selector(LIVE_REVISION, SelectorLifetime::Live, OTHER_HOST_ID);
@@ -132,7 +132,7 @@
 
     #[test]
     fn durable_selector_survives_revision_change() {
-        // r[verify agent_harness_runtime.host_control.selector_lifetime.not_durable]
+        // r[verify host_control.core.conformance]
         let durable = pane_selector(STALE_REVISION, SelectorLifetime::Durable, HOST_ID);
         let snapshot = snapshot(core::slice::from_ref(&durable), &[OP_FOCUS], &[]);
 

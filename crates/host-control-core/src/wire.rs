@@ -1,4 +1,6 @@
 //! Optional serde wire DTOs that always re-enter core validation.
+//!
+// r[impl host_control.core.serialization]
 
 use crate::{HostControlError, HostSelector, HostSelectorDraft};
 use alloc::string::String;

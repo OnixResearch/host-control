@@ -1,3 +1,4 @@
+// r[impl host_control.core.selectors]
 const HOST_ID_FIELD: crate::validation::FieldName = crate::validation::FieldName::new("host_id");
 const RESOURCE_ID_FIELD: crate::validation::FieldName =
     crate::validation::FieldName::new("host_resource_id");
@@ -177,7 +178,7 @@ impl HostResourceKind {
 }
 
 /// Selector lifetime declared by a host.
-// r[impl agent_harness_runtime.host_control.selector_lifetime]
+// r[impl host_control.core.selectors]
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum SelectorLifetime {
     /// Selector is valid only for a matching topology revision.

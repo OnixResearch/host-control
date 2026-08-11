@@ -81,7 +81,7 @@ impl HostEventKind {
 }
 
 /// Host event DTO.
-// r[impl agent_harness_runtime.host_control.events_waits]
+// r[impl host_control.core.purity]
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct HostEvent {
     kind: HostEventKind,

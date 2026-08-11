@@ -1,4 +1,7 @@
 //! Explicit Animus and Tile mapping and snapshot-first stream profiles.
+//!
+// r[impl host_control.core.features]
+// r[impl host_control.core.mappings]
 
 /// Canonical semantic status.
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]

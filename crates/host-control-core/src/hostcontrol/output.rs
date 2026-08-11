@@ -1,3 +1,4 @@
+// r[impl host_control.core.observation]
 /// Output view source class.
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum HostOutputSource {
@@ -88,7 +89,7 @@ pub struct HostOutputReadDraft<'a> {
 }
 
 /// Bounded host output view.
-// r[impl agent_harness_runtime.host_control.bounded_reads]
+// r[impl host_control.core.observation]
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct HostOutputView {
     source: HostOutputSource,

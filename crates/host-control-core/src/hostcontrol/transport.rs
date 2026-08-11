@@ -1,5 +1,5 @@
 /// Transport-neutral typed host error.
-// r[impl agent_harness_runtime.host_control.transport_neutral]
+// r[impl host_control.core.purity]
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct HostTypedError {
     code: String,
