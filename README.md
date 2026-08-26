@@ -97,5 +97,6 @@ Passing tests prove deterministic DTO behavior and selected Animus and Tile mapp
 - [Rivet repository at `69fcebff12956265fbffc573dc01ab14d3fd470e`](https://github.com/rivet-dev/rivet/tree/69fcebff12956265fbffc573dc01ab14d3fd470e) — reviewed as a bounded Inspector UX reference under Apache-2.0.
 - [Rivet Inspector protocol at the pinned revision](https://github.com/rivet-dev/rivet/blob/69fcebff12956265fbffc573dc01ab14d3fd470e/docs-internal/engine/inspector-protocol.md) — reference for snapshot reads and explicit version handling.
 - [Rivet Inspector launch note at the pinned revision](https://github.com/rivet-dev/rivet/blob/69fcebff12956265fbffc573dc01ab14d3fd470e/website/src/content/posts/2025-1-12-rivet-inspector/page.mdx) — reference for grouped state, logs, configuration, and connection views.
+- [Jido](https://github.com/agentjido/jido) — Apache-2.0 Elixir agent framework pinned as a design reference at revision `548b2a345765ba33e687341c661bbbcbdda73d94`. Host Control adapts the durable named agent-group discipline as authority-free identity and cohort-validation contracts.
 
-Host Control adopts only bounded, read-only grouping and snapshot concepts. It excludes Rivet transport, actor schemas, storage, rendering, authentication, REPL, and mutation behavior.
+Host Control adopts only bounded, read-only grouping and snapshot concepts. It excludes reference transport, actor schemas, storage, rendering, authentication, REPL, and mutation behavior. Lattice and Animus retain runtime lifecycle, persistence, and effect authority.
